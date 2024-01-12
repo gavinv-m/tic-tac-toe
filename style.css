@@ -1,0 +1,84 @@
+:root {
+    font-size: 16px;
+    --font-family:  "Nano Pix",  "Game Paused", sans-serif, system-ui;
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    height: 100vh;
+    width: 100vw;
+
+    /* Items */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 10fr;
+}
+
+
+dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border: 1px solid  #6d66ff;
+    border-radius: 10px;
+    border-style: none;
+}
+
+
+@font-face {
+    font-family: "Game Paused";
+    src: 
+        url(fonts/game-paused-font/gamepauseddemoregular-rpmy6-webfont.woff2),
+        url(fonts/game-paused-font/gamepauseddemoregular-rpmy6-webfont.woff);
+}
+
+
+@font-face {
+    font-family: "Nano Pix";
+    src: 
+        url(fonts/nano-pix-font/nanopixdemoregular-1gg7b-webfont.woff2),
+        url(fonts/nano-pix-font/nanopixdemoregular-1gg7b-webfont.woff);
+}
+
+
+h1 {
+    align-items: center;
+    background-color: #6d66ff;
+    color: #FF9E66;
+    display: flex;
+    font-family: var(--font-family);
+    font-size: 3rem;
+    justify-content: center;  
+    letter-spacing: 0.3rem;
+
+}
+
+
+#startButton {
+    background-color: #6d66ff;
+    border-radius: 10px;
+    border-width: 0px;
+    color:  #FF9E66;
+    font-family: var(--font-family);
+    font-size: 2rem;
+    height: 100px;
+    letter-spacing: 0.3rem;
+    width: 250px;
+}
+
+
+#startButton:focus
+
+
+#startButton:hover{
+    background-color: #59A8FF;
+}
