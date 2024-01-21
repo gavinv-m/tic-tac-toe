@@ -119,6 +119,7 @@ function playGame() {
 function checkGameWon(board, token) {
 
     const checkHorizontalCombinations = (gameBoardToCheck) => {
+
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 3; j++) {
                 if (gameBoardToCheck[i][j] === token) {
@@ -128,8 +129,14 @@ function checkGameWon(board, token) {
                 }
             }   
         }
+
+        return false;
     }
-    checkHorizontalCombinations(board);
+    
+    if (checkHorizontalCombinations(board)) {
+        return true;
+    }
+
 
     // Check vertical combinations
     const rearrangedArray = [];
@@ -152,7 +159,10 @@ function checkGameWon(board, token) {
     }, []);
     rearrangedArray.push(secondIndexArray);
 
-    checkHorizontalCombinations(rearrangedArray);
+    if (checkHorizontalCombinations(rearrangedArray)) {
+        return true;
+    }
+
 
     // Check diagonal combinations 
     const flattenedArray = board.flat();
