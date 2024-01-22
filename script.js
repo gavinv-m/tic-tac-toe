@@ -126,20 +126,16 @@ function checkGameWon(board, token) {
     const checkHorizontalCombinations = (gameBoardToCheck) => {
 
         for (let i = 0; i < 3; i++) {
-            for (let j = 0; j < 3; j++) {
-                if (gameBoardToCheck[i][j] === token) {
-
-                    if (j === 2) return true; 
-                    continue;
-                }
-            }   
+            if (gameBoardToCheck[i][0] === token && gameBoardToCheck[i][1] === token && gameBoardToCheck[i][2] === token) {
+                return true;
+            }
         }
-
         return false;
     }
 
-    if (checkHorizontalCombinations(board)) {
-        return true;
+    let horizontalCombination = checkHorizontalCombinations(board);
+    if (horizontalCombination === true) {
+        return true; 
     }
 
 
@@ -163,16 +159,18 @@ function checkGameWon(board, token) {
         return newArray;
     }, []);
     rearrangedArray.push(secondIndexArray);
+    console.log(rearrangedArray);
 
-    if (checkHorizontalCombinations(rearrangedArray)) {
-        return true;
+    let verticalCombination = checkHorizontalCombinations(rearrangedArray);
+    if (verticalCombination === true) {
+        return true; 
     }
 
 
     // Check diagonal combinations 
     const flattenedArray = board.flat();
     const diagTopRightToBottomLeft = flattenedArray.reduce((newArray, currentValue, index) => {
-        if (index % 2 === 0) {
+        if (index % 2 === 0 && index !== 0) {
             newArray.push(currentValue);
         }
         return newArray;
@@ -215,11 +213,13 @@ function updateScreen() {
         startDialog.showModal();
     });
 
-    const gridDialog = document.querySelector('.gridDialog')
+    const dialogButtons = document.querySelector('.dialog-buttons');
+    const gridDialog = document.querySelector('.gridDialog');
     const startBtn = document.getElementById('startButton');
     startBtn.addEventListener('click', () => {
 
         startDialog.close()
+        dialogButtons.showModal();
         gridDialog.showModal(); 
     });
 
