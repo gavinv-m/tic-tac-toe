@@ -88,6 +88,19 @@ function playGame() {
 
     const playRound = (row, column) => {
 
+        const playerOne = document.querySelector('.player1');
+        const playerTwo = document.querySelector('.player2');
+
+        if (activePlayer === 'Player One') {
+
+            playerOne.style.cssText = "background-color: white;"
+            playerTwo.style.cssText = "background-color: #FF9E66;"
+
+        } else {
+            playerOne.style.cssText = "background-color: #FF9E66;"
+            playerTwo.style.cssText = "background-color: white;"
+        }
+
         let cellVal = gameBoardWithValues[row][column]; 
         if (cellVal === 'X' || cellVal === 'O') return cellVal;
 
@@ -104,6 +117,8 @@ function playGame() {
 
             if (gameWon === true) {
 
+                const announcement = document.querySelector('.announce-winner');
+                announcement.innerHTML = `You win ${activePlayer}`;
                 console.log(`You win ${activePlayer}`);
                 gameOver = true;
                 return tokenToDisplay;
@@ -205,7 +220,7 @@ function checkGameWon(board, token) {
 
 function updateScreen() {
 
-    const game = playGame();
+    let game = playGame();
 
     const startDialog = document.getElementById('startDialog');
     window.addEventListener("load", () => {
@@ -213,14 +228,15 @@ function updateScreen() {
         startDialog.showModal();
     });
 
-    const dialogButtons = document.querySelector('.dialog-buttons');
     const gridDialog = document.querySelector('.gridDialog');
+    const resetBtn = document.querySelector('.reset-button');
     const startBtn = document.getElementById('startButton');
+
     startBtn.addEventListener('click', () => {
 
         startDialog.close()
-        dialogButtons.showModal();
         gridDialog.showModal(); 
+        // dialogButtons.showModal();
     });
 
     const cells = document.querySelectorAll('.cell');
@@ -242,6 +258,20 @@ function updateScreen() {
             cell.innerHTML = token;
         });
     });
+
+    resetBtn.addEventListener('click', () => {
+        
+        resetBtn.addEventListener('click', () => {
+            // Clear the game board
+            cells.forEach((cell) => {
+                cell.innerHTML = '';
+            });
+
+            // Re-initialize the game
+            game = playGame();
+        });
+    });
+    
     
 }
 

@@ -11,6 +11,20 @@
 }
 
 
+.announce-winner {
+    font-family: var(--font-family);
+    font-size: 1.3rem;
+    height: 50px;
+    margin-top: 25px;
+    width: 200px;
+
+    /* Items: */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
 body {
     height: 100vh;
     width: 100vw;
@@ -22,9 +36,34 @@ body {
 }
 
 
+.buttons,
+.players {
+    width: 100%;
+
+    /* Items: */
+    align-items: center;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+
+.buttons,
+.main, 
+.wrapper {
+    background-color: #E5E5E5;
+}
+
+
+.buttons > button{
+    border-radius: 10px;
+}
+
+
 .cell {
     align-items: center;
     background-color: #FF9E66;
+    border-radius: 10px;
     color: white;
     display: flex;
     font-family: var(--font-family);
@@ -35,18 +74,6 @@ body {
 
 .cell:hover {
     cursor: pointer; 
-}
-
-
-.dialog-buttons {
-    position: fixed;
-    top: 75%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    border: 1px solid  #6d66ff;
-    border-radius: 10px;
-    border-style: none;
 }
 
 
@@ -67,6 +94,7 @@ body {
 
 
 .gameBoard {
+    background-color: white;
     height: 300px;
     width: 300px;
 
@@ -78,6 +106,12 @@ body {
 }
 
 
+.gameBoard, 
+#startDialog {
+    border-radius: 10px;
+}
+
+
 .gridDialog, 
 #startDialog {
     position: fixed;
@@ -86,8 +120,12 @@ body {
     transform: translate(-50%, -50%);
 
     border: 1px solid  #6d66ff;
-    border-radius: 10px;
     border-style: none;
+}
+
+
+.gridDialog::backdrop {
+    background-color: #E5E5E5;
 }
 
 
@@ -100,6 +138,7 @@ h1 {
     font-size: 3rem;
     justify-content: center;  
     letter-spacing: 0.3rem;
+    visibility: visible;
 
 }
 
@@ -115,6 +154,30 @@ h1 {
     width: 100px;
 }
 
+
+.next-round:hover,
+.reset-button:hover {
+    cursor: pointer;
+}
+
+
+.player {
+    background-color: white;
+    height: 50px;
+    width: 100px;
+
+    /* Items: */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-family);
+    font-size: 1.1rem;
+}
+
+
+.player1 {
+    background-color: #FF9E66;
+}
 
 
 #startButton {
@@ -133,4 +196,13 @@ h1 {
 #startButton:hover {
     background-color: #59A8FF;
     cursor: pointer;
+}
+
+
+.wrapper {
+    display: flex;
+    flex-direction: column; /* Stacks the children vertically */
+    gap: 10px;
+    align-items: center; /* Centers the children horizontally */
+    justify-content: space-between; /* Spaces the children evenly apart vertically */
 }
