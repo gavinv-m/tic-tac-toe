@@ -72,6 +72,7 @@ function playGame() {
     const gameBoardWithValues = board.arrayWithValues;
     let token = 'X';
     let turns = 1;
+    let gameOver = false; 
 
     const players = [
         {player: 'Player One', token: 'X'},
@@ -88,14 +89,15 @@ function playGame() {
     const playRound = (row, column) => {
 
         let cellVal = gameBoardWithValues[row][column]; 
-        if (cellVal === 'X' || cellVal === 'O') return;
+        if (cellVal === 'X' || cellVal === 'O') return cellVal;
 
-        
-        
+        if (gameOver) return cellVal;
+    
         board.changeIcon(row, column, token);
         board.printBoard();
-       
 
+        let tokenToDisplay = token;
+       
         if (turns >= 5) {
 
             let gameWon = checkGameWon(gameBoardWithValues, token);
@@ -103,13 +105,16 @@ function playGame() {
             if (gameWon === true) {
 
                 console.log(`You win ${activePlayer}`);
-                return;
+                gameOver = true;
+                return tokenToDisplay;
             }
         }
 
         turns++;
         switchPlayerTurns(turns);
         console.log(`${activePlayer} your move!`);
+
+        return tokenToDisplay;
     }; 
 
     return {playRound};
@@ -132,7 +137,7 @@ function checkGameWon(board, token) {
 
         return false;
     }
-    
+
     if (checkHorizontalCombinations(board)) {
         return true;
     }
@@ -200,5 +205,45 @@ function checkGameWon(board, token) {
 }
 
 
-const game = playGame();
+function updateScreen() {
+
+    const game = playGame();
+
+    const startDialog = document.getElementById('startDialog');
+    window.addEventListener("load", () => {
+        
+        startDialog.showModal();
+    });
+
+    const gridDialog = document.querySelector('.gridDialog')
+    const startBtn = document.getElementById('startButton');
+    startBtn.addEventListener('click', () => {
+
+        startDialog.close()
+        gridDialog.showModal(); 
+    });
+
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach((cell, indexInNodeList) => {
+
+        let row = Math.floor(indexInNodeList / 3);
+        let col = indexInNodeList % 3;
+
+        cell.setAttribute('data-row', row);
+        cell.setAttribute('data-col', col);
+
+
+        cell.addEventListener('click', (event) => {
+            
+            let row = event.target.getAttribute('data-row');
+            let col = event.target.getAttribute('data-col');
+
+            let token = game.playRound(row, col);
+            cell.innerHTML = token;
+        });
+    });
+    
+}
+
+updateScreen();
 

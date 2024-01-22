@@ -22,15 +22,13 @@ body {
 }
 
 
-dialog {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.cell {
+    background-color: #FF9E66;
+}
 
-    border: 1px solid  #6d66ff;
-    border-radius: 10px;
-    border-style: none;
+
+.cell:hover {
+    cursor: pointer; 
 }
 
 
@@ -47,6 +45,31 @@ dialog {
     src: 
         url(fonts/nano-pix-font/nanopixdemoregular-1gg7b-webfont.woff2),
         url(fonts/nano-pix-font/nanopixdemoregular-1gg7b-webfont.woff);
+}
+
+
+.gameBoard {
+    height: 300px;
+    width: 300px;
+
+    /* Item */
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+
+.gridDialog, 
+#startDialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border: 1px solid  #6d66ff;
+    border-radius: 10px;
+    border-style: none;
 }
 
 
@@ -76,9 +99,7 @@ h1 {
 }
 
 
-#startButton:focus
-
-
-#startButton:hover{
+#startButton:hover {
     background-color: #59A8FF;
+    cursor: pointer;
 }
