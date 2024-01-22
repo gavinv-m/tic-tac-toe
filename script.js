@@ -267,6 +267,9 @@ function updateScreen() {
                 cell.innerHTML = '';
             });
 
+            const announcement = document.querySelector('.announce-winner');
+            announcement.innerHTML = '';
+
             // Re-initialize the game
             game = playGame();
         });
